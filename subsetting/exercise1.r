@@ -2,17 +2,17 @@
 
 # mtcars[mtcars$cyl = 4, ]
 # -->
-# mtcars[mtcars$cyl == 4, ]
+  mtcars[mtcars$cyl == 4, ]
 
 # mtcars[-1:4, ]
 # -->
-# mtcars[-(1:4),]
+  mtcars[-(1:4),]
 
 # mtcars[mtcars$cyl <= 5]
 # -->
-# mtcars[mtcars$cyl <= 5, ]
+  mtcars[mtcars$cyl <= 5, ]
 
 # mtcars[mtcars$cyl == 4 | 6, ]
 # -->
-# mtcars[mtcars$cyl == 4 || mtcars$cyl == 6, ]
+  mtcars[mtcars$cyl == 4 | mtcars$cyl == 6, ]
 
