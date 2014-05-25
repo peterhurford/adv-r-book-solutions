@@ -1,4 +1,5 @@
-### Read the source code for t() and t.test() and confirm that t.test() is an S3 generic and not an S3 method. What happens if you create an object with class test and call t() with it?
+### Read the source code for t() and t.test() and confirm that t.test() is an S3 generic and not an S3 method. 
+### What happens if you create an object with class test and call t() with it?
 
 # We can see that both t() and t.test() are generics because they both call UseMethod():
   t
