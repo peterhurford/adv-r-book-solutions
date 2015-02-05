@@ -12,3 +12,19 @@ myGet <- function(x) {
   NULL
 }
 
+recursiveGet <- function(name, env = parent.frame()) {
+  stopifnot(is.character(name), length(name) == 1)
+  if (identical(env, emptyenv())) {
+    # base case
+    warning(paste(name," not found"))
+    NULL
+  } else if (is.element(name,ls(env))) {
+    # success case
+    env[[`name`]]
+  } else {
+    # recursive case
+    recursiveGet(name, env = parent.env(env))
+  }
+}
+
+recursiveGet('mean')
