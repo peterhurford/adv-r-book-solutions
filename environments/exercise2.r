@@ -26,5 +26,3 @@ recursiveGet <- function(name, env = parent.frame()) {
     recursiveGet(name, env = parent.env(env))
   }
 }
-
-recursiveGet('mean')
