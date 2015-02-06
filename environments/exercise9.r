@@ -2,9 +2,9 @@
 
 myStr <- function(name) {
   list(
-    str=capture.output(str(name)),
-    calling=parent.frame(),
-    parent=parent.env(environment())
+    str = capture.output(str(name)),
+    calling = parent.frame(),
+    parent = parent.env(environment())
   )
 }
 
