@@ -235,38 +235,42 @@ birthday
 tukey
 
 # TODO: Pick up from here.
-crossprod
-tcrossprod
-eigen
-qr
-svd
-%*%
-%o%
-outer
-rcond
-solve
-ls
-exists
-rm
-getwd
-setwd
-q
-source
-install.packages
-library
-require
-help.search
-apropos
-RSiteSearch
-citation
-demo
-example
-vignette
-traceback
-browser
-recover
+crossprod(mat1, mat2)   # The crossproduct of matricies mat1 and mat2.  Equivalent to (but faster than) t(x) %*% y  #TODO: Learn about matricies (linear algebra)
+tcrossprod(mat1, mat2)  # The transposed crossproduct of matricies mat1 and mat2.  x %*% t(y)
+eigen(mat)              # Computes eigenvalues and eigenvectors of matrix mat.
+qr(mat)                 # Computes the QR decomposition of matrix mat.
+svd(mat)                # Computes the singular-value decomposition of matrix mat.
+mat1 %*% mat2           # Multiplies (matrix multiplication) mat1 and mat2.
+arr1 %o% arr2           # Computes the outer products of arrays arr1 and arr2.
+outer(mat1, mat2)       # Equivalent to arr1 %o% arr2.
+rcond(mat)              # Approximates the reciprocal condition number of matrix mat.
+solve(a, b)             # Solves a system of equations.  Solves for x in a %*% x = b
+ls(env)                 # Lists all objects within environment env.
+exists(s)               # Pass the name of a variable as a string, and it will tell you TRUE or FALSE if that variable is deinfed.
+rm(obj)                 # Remove an object from R memory; will make exists('obj') FALSE.
+getwd()                 # Gets the current working directory you are in.
+setwd('path/to/dir')    # Changes the current working directory to the directory you specify.
+q()                     # Closes the current R session.
+source('path/to/file.R')    # Runs the sourced R file.
+install.packages(package)   # Installs package from CRAN.
+library(package)            # Puts the namespace of the package into your global environment.
+                            # This means you don't have to prefix functions with their package name (i.e., package::fn), but it pollutes your global env, which is bad.
+                            # Generally the use of `library` is discouraged.
+require(package)            # Like `library`, but instead of giving an error if the package is not found, instead it returns FALSE and merely issues a warning.
+help.search(str)        # Uses regular expression matching on str and returns all documentation matching that regex string.
+apropos(str)            # Returns all objects in the namespace that match the regex string str.
+RSiteSearch(str)        # Like `help.search`, but opens up the web browser.
+citation(package)       # Gives information on how to cite a package.
+demo(str)               # Runs a demo of a given functionality in a package.  Type `demo()` to see all avaibable demos.
+example(str)            # Runs an example of a given function, if there is an example in the documentation for that function.
+vignette(str)           # Opens up vignettes (more detailed README) for a given function in the web browser, if such vignettes exist.
+traceback()             # Prints the callstack for a given error, helping trace the error to where it happened (and why).
+browser()               # When browser() runs, any execution halts and an interactive session is started at that point in the code.  Very useful for debugging.
+recover()               # TODO: ???
 options(error = )
-stop, warning, message
+stop
+warning
+message
 tryCatch
 try
 print
