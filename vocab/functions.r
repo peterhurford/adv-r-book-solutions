@@ -267,50 +267,55 @@ vignette(str)           # Opens up vignettes (more detailed README) for a given 
 traceback()             # Prints the callstack for a given error, helping trace the error to where it happened (and why).
 browser()               # When browser() runs, any execution halts and an interactive session is started at that point in the code.  Very useful for debugging.
 recover()               # TODO: ???
-options(error = )
-stop
-warning
-message
-tryCatch
-try
-print
-cat
-message
-warning
-dput
-format
-sink
-capture.output
-data
-count.fields
-read.csv
-write.csv
-read.delim
-write.delim
-read.fwf
-readLines
-writeLines
-readRDS
-saveRDS
-load
-save
-library(foreign)
-dir
-basename
-dirname
-tools::file_ext
-file.path
-path.expand
-normalizePath
-file.choose
-file.copy
-file.create
-file.remove
-file.rename
-dir.create
-file.exists
-file.info
-tempdir
-tempfile
-download.file
-library(downloader)
+options(error = )       # Options are globals you can set in your session or in your ~/.Rprofile that affect how R works.
+                        # Useful options include options(error = browser) or options(error = recover), which will run browser() or recover() respectively whenever R errors.
+stop("error")           # Halts the program and raises an error message.
+warning("error")        # Raises an error message but does not halt the program.
+message("hi")           # Raises a message the same way a warning would, but this message is not considered an error.  Prints in bold.
+tryCatch({ block }, error = { error_block }, warning = { warning_block } )   # Executes block.  If there is an error, executes error_block instead of erroring.
+                                                                             # Similarly with warnings and warning_block.  This way you can rescue against errors.
+try( {block} )          # Similar to, but worse than, tryCatch.
+print("hi")             # Prints the string to console.
+cat("hi")               # Prints the string to console.  The difference is that print returns its output whereas cat does not.
+dput(obj)               # Writes a text version of obj.  Obj can also be a file.
+format(str)             # Provides a lot of options for formatting a string.
+sink(file)              # Writes R output to a file.
+capture.output(expr, file)        # Evaluates expression expr and writes the output to file.
+data()                            # Loads a given dataset, passed as the name.  data() shows all datasets.  Example: data(iris)
+count.fields('path/to/file')      # Counts the number of fields in a file.
+read.csv('path/to/file')          # Reads csv file into R as a dataframe.
+write.csv(df, 'path/to/file')     # Writes dataframe df to file as a CSV.
+read.delim                        # Reads delimited files similar to read.csv (indeed, they have the same implementation in `read.table` under the hood).
+                                  # Note that a csv is a special type of delimited file where the delimitere is comma (`,`).
+                                  # The default delimiter for `read.delim` is the blank (``), but this can be changed by passing the `delim` argument.
+write.delim                       # Analagous to write.csv.
+read.fwf                          # Reads a fixed-width formatted file into an R dataframe.  This is not implemented via `read.table`.
+readLines(con)                    # Reads lines from a connection (this can be a file connection by passing 'path/to/file' as con.)
+writeLines(con)                   # Writes lines to a connection.
+saveRDS(obj, file)                # Serializes obj and stores it in file as an R-specific file.  (This is faster to write or read than csv's, and work for more object types.)
+readRDS(file)                     # Reads the R-specific file back into R memory.
+save(obj, file)                   # Similar to saveRDS, but with a different serialization procedure.
+load(obj)                         # Similar to readRDS.
+library(foreign)       # TODO:
+dir('path/to')         # Lists the names of all files in path.  dir() lists all files in the current working directory.
+basename('path/to')    # Gives the name of the base file in path.  For example, `basename('~/path/to/file') would return 'file'.
+dirname('path/to')     # Gives the name of the path for path.  For example, `basename('~/path/to/file') would return 'Users/yourname/path/to/file'.
+                       # This may be trivial for file paths, but it makes sense for file names themselves.
+                       # For example, if you have '~/path/to/file.R', `basename` would return "file.R" and `dirname` would return "~/path/to".
+tools::file_ext        # Returns the extension for file.  For example, tools::file_ext('~/path/to/file.R') returns "R".
+file.path('~/path/to')    # Returns the file path for the path, but converts it based on your platform.  For example, file.path('~/path/to') returns '~/path/to' for Macs.
+                          # This seems trivial, but it's actually useful because it allows you to list Mac paths and have them work on both Macs and PCs (and other OS's).
+path.expand('~/path/to')  # Expands the '~' in '~/path/to' to the system-implemented expanded path (i.e., 'Users/yourname/path/to' for Mac.)
+normalizePath('path')     # Expands a relative path into an absolute path.
+file.choose()             # Prompts a user to enter a file name interactively, and then returns that filename.
+file.copy(from, to)       # Copies a file.  Similar to 'cp' from terminal.
+file.create('path')       # Creates a file.
+file.remove('path')       # Removes a file.  Similar to 'rm' from terminal.
+file.rename(from, to)     # Renames a file, which can move a file.  Similar to 'mv' from terminal.
+dir.create('path')        # Creates a directory.  Similar to 'mkdir' from terminal.
+file.exists('path')       # Returns TRUE or FALSE whether there is a file at path.
+file.info('path')         # Gives stats on a file, such as its size, whether or not it's a directory, when it was created, and more.
+tempdir()                 # Returns a string that can be used as a file path to store a temporary directory.  Guaranteed not to conflict with existing directories.
+tempfile()                # Like tempdir, but for a file.
+download.file(url)        # Downloads a file from the internet.
+library(downloader)       # TODO:
