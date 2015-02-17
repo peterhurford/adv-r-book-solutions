@@ -7,7 +7,8 @@ g <- function(x) {
 }
 g.numeric <- function(x) y
 g(10)
-# [1] 2
+# This results in 2 because g(10) goes to the `g` base function, which assigns 2 to `y`, and then goes to `g.numeric` (because 10 is numeric), which returns `y`.  Because of scoping, that `y` is the `y` found in `g`, not the `y` in the global environment.
+
 
 h <- function(x) {
   x <- 10
@@ -15,8 +16,5 @@ h <- function(x) {
 }
 h.character <- function(x) paste("char", x)
 h.numeric <- function(x) paste("num", x)
-
 h("a")
-# [1] "char a"
-
-# The point is that there is a hierarchy of environments.  The specific method appropriate to the class will be searched first and then the environment of the generic function itself.  Only if neither environment contains the variable would the global environment be searched.
+# This results in "char a" because, the base `h` invokes `h.character` (because "a" is character) and, unlike the previous time, x is one of the arguments in the function call, and `UseMethod`'s black magic passes that x along.  (In the previous problem, `y` was not in the function call.)
