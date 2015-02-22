@@ -26,3 +26,5 @@
   myTestObject2 <- structure(10, class = "test")
   t.test(myTestObject2)
 # Error in t.test.default(myTestObject2) : not enough 'x' observations
+
+# It is important to notice that, having defined an object of class "test", e.g. x, calling t(x) no longer transposes x, but effectively calls t.test().  Which is why the use of dots is not recommended in function names.
