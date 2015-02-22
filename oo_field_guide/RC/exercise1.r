@@ -24,7 +24,13 @@ a$balance
 
 # But change the account to this:
 LockedAccount <- setRefClass("Account",
-  fields = list(.balance = 'numeric'),
+  fields = list(
+    .balance = "numeric",
+    balance = function(value) {
+      if (missing(value)) return(.balance)
+      else stop('Cannot assign to balance directly.')
+    }
+  ),
   methods = list(
     withdraw = function(x) {
       .balance <<- .balance - x
@@ -37,15 +43,20 @@ LockedAccount <- setRefClass("Account",
 al <- LockedAccount$new(.balance = 100)
 
 # and...
-al$.balance
+al$balance
 # [1] 100
-al$.balance <- 2
-al$.balance
-# [1] 2 TODO:
+al$balance <- 2
+# Error in (function (value)  : Cannot assign to balance directly.
+al$balance
+# [1] 100
 
 # Nice!
+# However, if we're sneaky, we can still edit the balance...
+al$.balance <- 2
+al$balance
+# [1] 2
 
-# Alternatively, we can use $lock()
+# What we really have to do is use $lock()
 Account$lock(balance)
 a <- Account$new(balance = 100)
 a$balance
