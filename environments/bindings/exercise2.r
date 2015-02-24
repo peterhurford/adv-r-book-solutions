@@ -17,3 +17,9 @@ a
 assign_("b", 4)
 b
 # [1] 4
+
+# You can also use lockBinding()
+assign_ <- function(name, value, env = parent.frame()) {
+  assign(name, value, env)
+  lockBinding(name, env)
+}
