@@ -1,4 +1,4 @@
-
+### Use both for loops and lapply() to fit linear models to the mtcars using the formulas stored in this list:
 
 formulas <- list(
   mpg ~ disp,
