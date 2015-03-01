@@ -6,3 +6,8 @@ trials <- replicate(
   simplify = FALSE
 )
 sapply(trials, function(x) x$p.value)
+
+
+### Extra challenge: get rid of the anonymous function by using [[ directly.
+
+sapply(trials, `[[`, 'p.value')
