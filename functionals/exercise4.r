@@ -6,14 +6,13 @@ bootstraps <- lapply(1:10, function(i) {
 })
 
 # for loop
-fits <- list()
+fits3 <- list()
 i <- 1
 for (bootstrap in bootstraps) {
-  fits[[i]] <- lm(mpg ~ disp, data = bootstrap)
+  fits3[[i]] <- lm(mpg ~ disp, data = bootstrap)
   i <- i + 1
 }
 
 # lapply
-rm(fits)
-fits <- lapply(bootstraps, lm, formula = mpg ~ disp)
-fits
+fits4 <- lapply(bootstraps, lm, formula = mpg ~ disp)
+fits4

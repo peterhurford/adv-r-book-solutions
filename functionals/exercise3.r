@@ -8,12 +8,11 @@ formulas <- list(
 )
 
 # For loop
-fits <- list()
+fits1 <- list()
 i <- 1
-for (formula in formulas) { fits[[i]] <- lm(formula, data = mtcars); i <- i + 1 }
-fits
+for (formula in formulas) { fits1[[i]] <- lm(formula, data = mtcars); i <- i + 1 }
+fits1
 
 # lapply
-rm(fits)
-fits <- lapply(formulas, lm, data = mtcars)  # or `lapply(formulas, function(f), lm(f, data = mtcars))`
-fits
+fits2 <- lapply(formulas, lm, data = mtcars)  # or `lapply(formulas, function(f), lm(f, data = mtcars))`
+fits2
