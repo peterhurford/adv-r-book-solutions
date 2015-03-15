@@ -130,7 +130,6 @@ reorder                   # TODO: To be honest, I don't know how to use this.
 relevel(x, new_levels)    # Changes the order of levels in x to become new_levels
                           # Example: `reorder(factor(c("M", "M", "M"), levels = c("M", "F")), "F")` changes levels from `c("M", "F")` to `c("F", "M")`.
                           # TODO: I'm not sure what difference that makes, but some functions operate on the first level.
-" " " " " "                         # TODO: I'm not sure whit difference that makes, but some functions operate on the first level.
 cut(x, y)                 # Breaks x into y equal parts.
 findIntreval(x, b)        # Given breaks b, find out which interval in b contains x.
                           # Example: `findInterval(4, c(3, 6, 9))` returns 1 because 4 is between 3 and 6 (in the first interval).
