@@ -18,3 +18,14 @@ All <- function(f, x) {
 
 All(function(x) x > 1, iris$Petal.Length)    # Note that this is equivalent to `all(iris$Petal.Length > 1)`
 # [1] FALSE
+
+
+### Also, if using `any` in `Any` is seen as cheating, here's a more elegant alternative (that I found elsewhere, not my own invention):
+Any <- function(f, x) {
+  Reduce(`&&`, x, TRUE)
+}
+
+### and All...
+All <- function(f, x) {
+  Reduce(`||`, x, TRUE)
+}
