@@ -18,4 +18,18 @@ print.remember <- function(x, ...) {
   str(as.list(x))
 }
 
-#TODO:
+## Append is inefficient because it requires recomputing the list every time it is run.  Faster would be to continue to store the number of items remembered, like so:
+  f <- function(...) {
+    # This is inefficient!
+    number_remembers <<- number_remembers + 1
+    memory[[number_remembers]] <<- list(...)
+    invisible()
+  }
+
+## This is faster as shown in microbenchmark:
+  ll <- as.list(seq(1000))
+  number_remembers <- 1000
+  microbenchmark::microbenchmark(
+    { ll <<- append(ll, 2) },                                                     # 9.8mcs
+    { number_remembers <<- number_remembers + 1; ll[[number_remembers]] <- 2 }    # 1.6mcs
+  )
