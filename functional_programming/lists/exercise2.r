@@ -18,3 +18,6 @@ x$f(x$z)       # 2
 f(x$z)         # x$z
 x$f(z)         # Error in x$f(z) : object 'z' not found
 f(z)           # Error: could not find function "f"
+
+## Igor
+# e. It depends on whether f, z are functions or data
