@@ -3,3 +3,10 @@
 pick <- function(i) { function(x) x[[i]] }
 
 identical(lapply(mtcars, pick(5)), lapply(mtcars, function(x) x[[5]]))
+
+## Igor
+pick <- function(i) {
+  function(x) {
+    x[[i]]
+  }
+}
