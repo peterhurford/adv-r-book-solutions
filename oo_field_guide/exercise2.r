@@ -1,8 +1,3 @@
-### What classes have a method for the Math group generic in base R? Read the source code. How do the methods work?
+### I claimed that there aren’t any RC classes in base R, but that was a bit of a simplification. Use getClasses() and find which classes extend() from envRefClass. What are the classes used for? (Hint: recall how to look up the documentation for a class.)
 
-# The documentation states, "Base R contains factor, data.frame and difftime methods for [the Math group]."  
-
-# These functions are defined as primitives:
-
-  sqrt
-# function (x)  .Primitive("sqrt")
+#TODO:
