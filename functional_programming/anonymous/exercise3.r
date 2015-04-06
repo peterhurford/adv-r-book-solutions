@@ -11,3 +11,8 @@ integrate(function(x) sin(x) + cos(x), -pi, pi)
 ### y = exp(x) / x, x in [10, 20]
 integrate(function(x) exp(x) / x, 10, 20)
 # 25613160 with absolute error < 2.8e-07
+
+## Igor
+3. integrate(function(x) x^2 - x, 0 , 10)
+integrate(function(x) sin(x) + cos(x), pi , -pi)
+integrate(function(x) exp(x) / x, 10 , 20)
