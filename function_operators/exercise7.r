@@ -10,7 +10,9 @@ fs[[1]](3)
 ###> [1] 4
 ### should return 0 * 3 + 0 = 0
 
-# The function does not return what was expected because t
+# The function does not return what was expected because `a` and `b` are
+# lazily evaluated and thus the values for the first invocation of `f` are
+# re-modified before `f` is evaluated.
 
 ### How can you modify f so that it works correctly?
 
