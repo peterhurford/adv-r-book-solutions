@@ -6,7 +6,7 @@ bootstraps <- lapply(1:10, function(i) {
 })
 
 # for loop
-fits3 <- list()
+fits3 <- vector("list", length = length(bootstraps))  
 i <- 1
 for (bootstrap in bootstraps) {
   fits3[[i]] <- lm(mpg ~ disp, data = bootstrap)
