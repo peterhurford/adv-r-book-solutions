@@ -7,3 +7,14 @@ make_summary <- function(summary_funs) {
 }
 summary2 <- make_summary(list('min' = min, 'median' = median, 'mean' = mean, 'max' = max))
 summary2(runif(10))
+
+## Igor
+summary <- list(
+  Min. = function(x) min(x),
+  q1 = function(x) quantile(x, .25),
+  Median = function(x) median(x), 
+  q3 = function(x) quantile(x, .75),
+  max = function(x) max(x)
+)
+vec <- rnorm(10)
+lapply(summary, function(f) f(vec))
