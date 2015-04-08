@@ -8,7 +8,7 @@ formulas <- list(
 )
 
 # For loop
-fits1 <- list()
+fits1 <- vector("list", length = length(formulas))
 i <- 1
 for (formula in formulas) { fits1[[i]] <- lm(formula, data = mtcars); i <- i + 1 }
 fits1
