@@ -9,3 +9,5 @@ $row.names
 
 $class
 [1] "data.frame"
+
+# There also is `col.names`, which is the same as `names`.
