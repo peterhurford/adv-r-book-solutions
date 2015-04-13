@@ -5,3 +5,5 @@
 > as.matrix(data.frame(a = 1, b = 'char'))
      a   b
 [1,] "1" "char"
+
+# Note that `1` has become a character, `"1"`.
