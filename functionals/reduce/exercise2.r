@@ -2,3 +2,7 @@
 
 library(magrittr)
 iris %>% Filter(is.numeric, .) %>% vapply(., median, numeric(1))
+
+func <- function(df) {
+  Filter(is.numeric, df) %>% vapply(., summary, numeric(6))
+}
