@@ -5,7 +5,7 @@
 # For example, Position(function(x) x > 1, iris$Petal.Length) and which(iris$Petal.Length > 1)[[1]] are the same.
 
 ### What’s the relationship between where() and Filter()?
+# `where` as defined by hadley will return a logic vector based upon a predicate or condition
+# 'Filter` will further subset the dataframe based upon this logic vector. 
 
-#TODO: WTF is where?
-#> where
-#Error: object 'where' not found
+
