@@ -4,6 +4,11 @@ Any <- function(f, x) {
   any(vapply(x, f, logical(1)))
 }
 
+Any2 <- function(f, x) {
+  sum(vapply(x, f, logical(1)) >= 1)
+}
+
+
 Any(function(x) x > 1, iris$Petal.Length)    # Note that this is equivalent to `any(iris$Petal.Length > 1)`
 # [1] TRUE
 Any(function(x) x > 100, iris$Petal.Length)
@@ -15,6 +20,11 @@ Any(function(x) x > 100, iris$Petal.Length)
 All <- function(f, x) {
   all(vapply(x, f, logical(1)))
 }
+
+All2 <- function(f, x) {
+  sum(vapply(x, f, logical(1)) == length(x))
+}
+
 
 All(function(x) x > 1, iris$Petal.Length)    # Note that this is equivalent to `all(iris$Petal.Length > 1)`
 # [1] FALSE
