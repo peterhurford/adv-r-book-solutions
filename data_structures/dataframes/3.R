@@ -10,6 +10,12 @@ data frame with 0 columns and 0 rows
 
 # Seems like that worked!  0 rows AND 0 columns?
 
-# But can we have a dataframe with 0 rows and >=1 column?
-# Or a dataframe with >=1 rows but 0 columns?
-# It doesn't seem so.
+### But can we have a dataframe with 0 rows and >=1 column?
+df <- data.frame(1, seq(10))[FALSE, ]
+dim(df)
+# [1] 0 2
+
+### Or a dataframe with >=1 rows but 0 columns?
+df <- data.frame(1, seq(10))[, FALSE]
+dim(df)
+# [1] 10  0
