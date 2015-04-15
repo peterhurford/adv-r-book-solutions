@@ -11,7 +11,7 @@
 # [4,]    4    8   12   16   20
 # [5,]    5   10   15   20   25
 
-# upper.tri() returns a logical matrix:
+# upper.tri() returns a logical matrix indicating the upper triangle of the matrix.
   upper.tri(x)
 #      [,1]  [,2]  [,3]  [,4]  [,5]
 # [1,] FALSE  TRUE  TRUE  TRUE  TRUE
