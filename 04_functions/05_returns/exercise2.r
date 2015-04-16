@@ -1,6 +1,6 @@
 ### What function undoes the action of library()?
 
-# unloadNamespace()
+# detach()
 
 
 ### How do you save and restore the values of options() and par()?

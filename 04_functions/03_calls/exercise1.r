@@ -10,4 +10,4 @@ y <- runif(20,0,1)
 
 cor(m = "k", y = y, u = "p", x = x)
 # This uses partial matching to work.  It would be much clearer to write:
-cor(x,y, use = "pairwise.complete.obs", method="kendall")
+cor(x, y, use = "pairwise.complete.obs", method = "kendall")
