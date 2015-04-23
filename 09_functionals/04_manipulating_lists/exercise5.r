@@ -22,6 +22,13 @@ span <- function(f, x) {
 span(function(x) x > 1, iris$Petal.Length)
 span(function(x) x > 4, iris$Petal.Length)
 
-
 vapply(iris, function(x) x > 1, logical(1)) 
 %>% rle(.) -> rle_obj
+
+# Another option:
+Span2 <- function(f, x) {
+  rl <- rle(vapply(x, f, logical(1)))
+  sum(rl$lengths[seq_len(which(rl$values)[which.max(rl$lengths[rl$values])] - 1)]) + 1
+}
+Span2(function(x) x > 1, iris$Petal.Length)
+Span2(function(x) x > 4, iris$Petal.Length)
