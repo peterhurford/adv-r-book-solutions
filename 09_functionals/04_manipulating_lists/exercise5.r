@@ -31,7 +31,6 @@ Span3 <- function(f, x) {
 Span3(function(x) x > 1, iris$Petal.Length)
 Span3(function(x) x > 4, iris$Petal.Length)
 
-<<<<<<< HEAD
 # Another option:
 Span2 <- function(f, x) {
   rl <- rle(vapply(x, f, logical(1)))
@@ -39,7 +38,4 @@ Span2 <- function(f, x) {
 }
 Span2(function(x) x > 1, iris$Petal.Length)
 Span2(function(x) x > 4, iris$Petal.Length)
-=======
-vapply(iris, function(x) x > 1, logical(1)) 
-%>% rle(.) -> rle_obj
->>>>>>> 5c9879b4d82da96646cbf83bf4144e27e78da67e
+
