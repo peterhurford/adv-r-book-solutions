@@ -9,7 +9,7 @@ lapply2 <- function(X, FUN, ...) {
   }
 }
 ## name elements in the list
-lapply2 <- function(X, f, names,  ...) {
+lapply3 <- function(X, f, names,  ...) {
     stopifnot(length(X) == length(names))
     out <- vector("list", length(X))
     for (i in seq_along(X)) {
