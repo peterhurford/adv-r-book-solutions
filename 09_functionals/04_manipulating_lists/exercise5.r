@@ -12,19 +12,6 @@ Span <- function(f, x) {
 Span(function(x) x > 1, iris$Petal.Length)
 Span(function(x) x > 4, iris$Petal.Length)
 
-span <- function(f, x) {
-  x %>% f() %>% rle(.) -> rle_obj
-  max_true_run <- max(rle_obj$lengths[rle_obj$values])
-  pos <- which(rle_obj$lengths == max_true_run & (rle_obj$values == TRUE) )
-  sum(rle_obj$lengths[1:pos -1]) + 1
-}
-
-span(function(x) x > 1, iris$Petal.Length)
-span(function(x) x > 4, iris$Petal.Length)
-
-vapply(iris, function(x) x > 1, logical(1)) 
-%>% rle(.) -> rle_obj
-
 # Another option:
 Span2 <- function(f, x) {
   rl <- rle(vapply(x, f, logical(1)))
@@ -32,3 +19,17 @@ Span2 <- function(f, x) {
 }
 Span2(function(x) x > 1, iris$Petal.Length)
 Span2(function(x) x > 4, iris$Petal.Length)
+
+# A third option:
+Span3 <- function(f, x) {
+  x %>% f() %>% rle(.) -> rle_obj
+  max_true_run <- max(rle_obj$lengths[rle_obj$values])
+  pos <- which(rle_obj$lengths == max_true_run & (rle_obj$values == TRUE) )
+  sum(rle_obj$lengths[1:pos -1]) + 1
+}
+
+Span3(function(x) x > 1, iris$Petal.Length)
+Span3(function(x) x > 4, iris$Petal.Length)
+
+vapply(iris, function(x) x > 1, logical(1)) 
+%>% rle(.) -> rle_obj
