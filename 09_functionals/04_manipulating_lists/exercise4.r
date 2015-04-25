@@ -4,10 +4,6 @@ Any <- function(f, x) {
   any(vapply(x, f, logical(1)))
 }
 
-Any2 <- function(f, x) {
-  sum(vapply(x, f, logical(1)) >= 1)
-}
-
 
 Any(function(x) x > 1, iris$Petal.Length)    # Note that this is equivalent to `any(iris$Petal.Length > 1)`
 # [1] TRUE
@@ -21,21 +17,28 @@ All <- function(f, x) {
   all(vapply(x, f, logical(1)))
 }
 
-All2 <- function(f, x) {
-  sum(vapply(x, f, logical(1)) == length(x))
-}
-
 
 All(function(x) x > 1, iris$Petal.Length)    # Note that this is equivalent to `all(iris$Petal.Length > 1)`
 # [1] FALSE
 
 
-### Also, if using `any` in `Any` is seen as cheating, here's a more elegant alternative (that I found elsewhere, not my own invention):
+# Also, if using `any` in `Any` is seen as cheating, here's a more elegant alternative
+# (that I found elsewhere, not my own invention):
 Any <- function(f, x) {
   Reduce(`&&`, x, TRUE)
 }
 
-### and All...
+# and All...
 All <- function(f, x) {
   Reduce(`||`, x, TRUE)
+}
+
+# Another attempt:
+
+Any2 <- function(f, x) {
+  sum(vapply(x, f, logical(1)) >= 1)
+}
+
+All2 <- function(f, x) {
+  sum(vapply(x, f, logical(1)) == length(x))
 }
