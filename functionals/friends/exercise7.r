@@ -1,5 +1,3 @@
-### Implement mcsapply(), a multicore version of sapply().
-
 # sapply is a variant of lapply (see source code for `base::sapply`), so `mcsapply` will be the same variant of `lapply`.
 mcsapply <- function(X, FUN, ..., simplify = TRUE, USE.NAMES = TRUE) {
   FUN <- match.fun(FUN)
