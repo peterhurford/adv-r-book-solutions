@@ -1,4 +1,6 @@
-### Our previous download() function only downloads a single file. How can you use partial() and lapply() to create a function that downloads multiple files at once? What are the pros and cons of using partial() vs. writing a function by hand?
+### Our previous download() function only downloads a single file.
+### How can you use partial() and lapply() to create a function tha
+### downloads multiple files at once? 
 
 old_download <- function(url, ...) {
   download.file(url, ...)
@@ -14,3 +16,7 @@ new_download_with_partial <- function(urls, ...) {
   lapply(urls, pryr::partial(download.file))
 }
 
+
+### What do you think of the result? Is it easier or harder to read?
+
+# Easier to read.
