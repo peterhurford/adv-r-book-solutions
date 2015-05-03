@@ -5,4 +5,5 @@
 
 ### Why does pairwise.t.test() use them?
 
-# To populate the name of the returned list.
+# To populate the dimension names of "data" printed in the table so the user can
+# see the inputs.
