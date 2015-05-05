@@ -1,16 +1,17 @@
-### Write a function called fget() that finds only function objects. It should have two arguments, name and env, and should obey the regular scoping rules for functions: if there's an object with a matching name that's not a function, look in the parent. (This function should be an equivalent of match.fun() extended to take a second argument). For an added challenge, also add an inherits argument which controls whether the function recurses up to the parents or only looks in one environment.
+### Write a function called fget() that finds only function objects. It should have two arguments,
+### name and env, and should obey the regular scoping rules for functions: if there's an object with
+### a matching name that's not a function, look in the parent. (This function should be an equivalent
+### of match.fun() extended to take a second argument). For an added challenge, also add an inherits
+### argument which controls whether the function recurses up to the parents or only looks in one
+### environment.
 
-
-
-
-fget(name, environment, inherits=TRUE) {
-  
+fget(name, environment, inherits = TRUE) {
   stopifnot(is.character(name), length(name) == 1)
   
   test <- function(env,name) is.element(name,ls(env)) && is.function(env[[`name`]])
     
   if (test(environment,name)) return(environment[[`name`]])
-  if (inherits) {
+  if (isTRUE(inherits)) {
     while (!identical(environment,emptyenv())) {
       environment <- parent.env(environment)
       if (test(environment,name)) return(environment[[`name`]])
@@ -44,12 +45,12 @@ fget('mean',globalenv())
  
 # Now that there is a local function called "mean", we start getting some interesting behavior:
 mean <- function() cat("Hello world")
-fget('mean',globalenv())
+fget("mean", globalenv())
 # function() cat("Hello world")
  
 # Finally, we delete the local function.  Now the fget returns the base function as before:
 rm("mean")
-fget('mean',globalenv())
+fget("mean", globalenv())
 # function (x, ...) 
 # UseMethod("mean")
 # <bytecode: 0x7fcfc8d651f0>
