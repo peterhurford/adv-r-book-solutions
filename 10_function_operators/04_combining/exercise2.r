@@ -3,7 +3,7 @@
 ### and(), the function returns once it sees the first FALSE)?
 
 and2 <- function(...) {
-  fns <- lapply(list(...), force)
+  fns <- list(...)
   function(...) {
     Reduce(
       `&&`,
