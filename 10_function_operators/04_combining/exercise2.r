@@ -19,7 +19,7 @@ lazy_and2 <- function(...) {
   fns <- lapply(list(...), force)
   function(...) {
     for (fn in fns) {
-      if (!isTRUE(do.call(fn, list(...)))) { return(FALSE); break }
+      if (!isTRUE(do.call(fn, list(...)))) { return(FALSE) }
     }
     TRUE
   }
@@ -28,7 +28,7 @@ lazy_and2 <- function(...) {
 and2(is.numeric, function(x) x > 4.0)(10)   # TRUE
 and2(is.numeric, function(x) x > 4.0)(3)    # FALSE
 and2(is.numeric, function(x) x > 4.0)("10") # FALSE
-lazy_and2(is.numeric, function(x) { Sys.sleep(2); x > 4.0 })("10") # FALSE (but executes the sleep because it isn't lazy)
+and2(is.numeric, function(x) { Sys.sleep(2); x > 4.0 })("10") # FALSE (but executes the sleep because it isn't lazy)
 
 lazy_and2(is.numeric, function(x) x > 4.0)(10)   # TRUE
 lazy_and2(is.numeric, function(x) x > 4.0)(3)    # FALSE
