@@ -18,3 +18,5 @@ a
 
 
 ## Like `<<-`, `rebind` will iteratively search up the environment tree to find the nearest variable that matches `name` and then will assign it.  However, unlike `<<-`, `rebind` will not create a new variable if one isn't found.  This is useful if you want to be sure you are redefining a variable that already exists.
+## Otherwise this can introduce non-obvious dependencies between functions 
+
