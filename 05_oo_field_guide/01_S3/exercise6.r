@@ -15,9 +15,9 @@ length(f)
 length(g)
 # [1] "function"
 
-Hadley's point seems to be the last line of the the help page for ?"internal generic":
-"For efficiency, internal dispatch only occurs on objects, that is those for which is.object returns true."
- g is an object; f is not!:
+# Hadley's point seems to be the last line of the the help page for ?"internal generic":
+#"For efficiency, internal dispatch only occurs on objects, that is those for which is.object returns true."
+# g is an object; f is not!:
 
 is.object(f)
 # [1] FALSE
