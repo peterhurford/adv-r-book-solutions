@@ -1,5 +1,12 @@
 ### What happens if you define a new S4 class that doesn't "contain" an existing class? (Hint: read about virtual classes in `?Classes`.
 
+# From ?class
+# Classes exist for which no actual objects can be created by a call to new,
+# the virtual classes, in fact a very important programming tool.
+# They are used to group together ordinary classes that want to share some
+# programming behavior, without necessarily restricting how the behavior is
+# implemented.
+
 # Making a normal class
 
 setClass("Nonvirtual", slots = list(name = "character"))
@@ -62,4 +69,3 @@ roland
 #An object of class "Virtual"
 #Slot "name":
 #character(0)
-
