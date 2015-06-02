@@ -30,3 +30,10 @@ g(a + b + c + d + e + f + g + h + i + j + k + l + m + n + o + p + q + r + s)
 g2 <- function(x) paste(deparse(substitute(x)), collapse = "")
 g2(a + b + c + d + e + f + g + h + i + j + k + l + m +
     n + o + p + q + r + s + t + u + v + w + x + y + z)
+
+## set width.cutoff larger than length of string, wont work greater than width.cutoff maximum value 
+g3 <- function(x) deparse(substitute(x), width.cutoff = sum(nchar(deparse(substitute(x)))))
+g3(a + b + c + d + e + f + g + h + i + j + k + l + m +
+    n + o + p + q + r + s + t + u + v + w + x + y + z)
+
+
