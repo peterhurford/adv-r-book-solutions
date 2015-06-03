@@ -22,3 +22,15 @@ pairwise.t.test(
 # P value adjustment method: holm
 
 # Note that the function succeeds, but the dimension name for "data" is corrupted.
+
+## ^ actually the above deparse code execute successfully as we can see
+# `DNAME` or `data.name` printed successfully. The output is a 0x0 matrix because
+# incorrect parameter types are passed
+
+x = rnorm(100)
+g = gl(2, 1, 100)
+## below returns multiple vectors when deparsed with default settings
+##' as discussed earlier in chapter.
+`a + b + c + d + e + f + g + h + i + j + k + l + m + n + o + p + q + r + s + t + u + v + w + x + y + z` <- g
+pairwise.t.test(x, `a + b + c + d + e + f + g + h + i + j + k + l + m + n + o + p + q + r + s + t + u + v + w + x + y + z`)
+## ^ works fine as DNAME is wrapped in a paste statement
