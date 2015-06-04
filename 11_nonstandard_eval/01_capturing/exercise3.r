@@ -23,7 +23,6 @@ pairwise.t.test(
 
 # Note that the function succeeds, but the dimension name for "data" is corrupted.
 
-## ^ actually the above deparse code execute successfully as we can see
 # `DNAME` or `data.name` printed successfully. The output is a 0x0 matrix because
 # incorrect parameter types are passed
 
