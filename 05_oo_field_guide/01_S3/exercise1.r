@@ -15,6 +15,12 @@
 
 # Method dispatch for t.test() depends on the implicit class of the underlying base type.  For example, 
 
+### Alternative methodology using pryr
+library(pryr)
+pryr::ftype(t.test)
+# > pryr::ftype(t.test)
+# [1] "s3"      "generic"
+## ^ tells us directly its an s3 generic rather than method, otherwise `pryr::ftype` would explicitly say "s3", "method"
 # Create a non-numeric 't' object
   myTestObject <- structure(list(), class = "test")
   t.test(myTestObject)
