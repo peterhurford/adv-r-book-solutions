@@ -14,6 +14,10 @@ get2("x", env = .GlobalEnv)
 
 ### Write an equivalent to assign() using as.name(), substitute(), and eval().
 assign2 <- function(x, value, env) {
-  eval(as.name(x))
+  env[[eval(x)]] <- eval(substitute(value))
 }
-#TODO: Not sure how to do this.
+## somewhat convoluted?
+e <- new.env()
+assign2('x', 3, e)
+e$x
+# [1] 3
