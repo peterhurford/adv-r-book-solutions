@@ -7,7 +7,8 @@ pryr::ast({
   else if (x == 3) { third_stuff() }
   else { else_stuff() }
 })
-
+## Under the hood the language will call another base `if` statement. `else if`
+## seems to be for human readibility.
 # \- ()
 #   \- `{
 #   \- ()
