@@ -3,7 +3,10 @@
 ### Implement one by guessing the names of the “is” functions for calls, names,
 ### and pairlists.
 
-is.expressable <- function(x) {
-  is.name(x) | is.call(x) | is.pairlist(x)
+is.constant <- function(const) {
+  identical(const, substitute(const))
 }
-#TODO: Does not test for constants.
+
+is.expressable <- function(x) {
+  is.name(x) | is.call(x) | is.pairlist(x) | is.constant(x)
+}
