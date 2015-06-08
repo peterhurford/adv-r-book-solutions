@@ -9,7 +9,12 @@ identical(a, b)
 
 ### What’s the difference?
 
-# `a` is calling function `mean` with the arg `1:10`, whereas `b` is calling `mean` with the arg `quote(1:10)`.
+# `a` is calling function `mean` with the arg `1:10`,
+# whereas `b` is calling `mean` with the arg `quote(1:10)`.
+# The second is passing the second argument as an unevaluated expression rather,
+# these have the same result because of lazy evaluation. However I personally
+# prefer the first methodology at is it more explicit and more robust against
+# early evaluation.
 
 
 ### Which one should you prefer?
