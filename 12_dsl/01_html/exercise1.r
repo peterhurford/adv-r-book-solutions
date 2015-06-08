@@ -56,3 +56,4 @@ p("Text ", "with &escaping!", b("BOLD &escape!"))
 # <HTML> <p>Text with &amp;escaping!<b>BOLD &amp;escape!</b></p>
 
 script("Script has no escape &&&!")
+# <HTML> <script>Script has no escape &&&!</script>
