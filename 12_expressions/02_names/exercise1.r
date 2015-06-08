@@ -28,3 +28,5 @@ g
 # }
 
 # The fact that R can do this is very strange.
+# To quote robK "code is data and data is code".
+# similarly on can change the body of the function through `body`
