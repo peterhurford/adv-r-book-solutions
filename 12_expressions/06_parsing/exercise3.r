@@ -6,3 +6,5 @@
 # `source` has many more options than `sys.source`.
 
 # `source` can accept data from connections other than files, whereas `sys.source` cannot.
+
+# sys.source which is a streamlined version to source a file into an environment.
