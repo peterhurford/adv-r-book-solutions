@@ -14,6 +14,6 @@ do.call2(paste, list("hi", "hello"))
 # [1] "hi hello"
 
 ## alternative
-do2.call <- function(fun, ...) {
-  eval(call(as.character(substitute(fun)), unlist(...)))
+do2.call <- function(fun, args) {
+  eval(call(as.character(substitute(fun)), unlist(args)))
 }
