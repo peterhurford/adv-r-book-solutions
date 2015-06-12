@@ -137,5 +137,4 @@ script("Script has no escape &&&!")
 # <HTML> <script>Script has no escape &&&!</script>
 
 p("This paragraph tag contains ", b("bold!"), " and a ", a("link", href = "www.example.com"))
-# <HTML> <p>This paragraph tag contains <b>bold!</b> and a <a href = "www.examp
-# le.com">link</a></p>
+# <HTML> <p>This paragraph tag contains <b>bold!</b> and a <a href = "www.example.com">link</a></p>
