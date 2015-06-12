@@ -38,31 +38,39 @@ print.html <- function(x, ...) {
 
 tag <- function(tag, attrs = NULL, escape = TRUE, void = FALSE) {
   force(tag); force(escape); force(void)
-  attrs <- c(attrs, "class", "id") %>% unique
+  attrs <- c(attrs, "class", "id") %>% unlist %>% unique
 
   fn <- function() {
+    passed_args <- named(as.list(sys.call())[-1])
+    if (!all(names(passed_args) %in% attrs)) {
+      stop(tag, " only takes can implement the following: ",
+        paste0(attrs, collapse = ", "), "\n",
+        "You tried to implement ",
+        paste0(names(passed_args[which(!passed_args %in% attrs)]), collapse = ", "))
+    }
+
     if (isTRUE(void)) {
       if (length(list(...)) > 0) {
-        stop("Tag ", tag, " can not have children", call. = FALSE)
+        stop("Tag ", tag, " can not have text.", call. = FALSE)
       }
     } else {
-      children <- list(...) %>%
+      children <- list(...) %>% unnamed %>%
         { if (isTRUE(escape)) { escape(.) } else { . } } %>% unlist
     }
 
-    browser()
-
-    # called_attribs <- named(args)
-
-    # html(paste0(
-    #   "<", tag, called_attribs, ">",
-    #   if (!isTRUE(void)) { paste(children, collapse = "") } else { "" },
-    #   "</", tag, ">"
-    # ))
+    html(paste0(
+      "<", tag,
+      if (length(passed_args) > 0) {
+        paste0(" ", names(passed_args), " = \"", passed_args, "\"", collapse = " ")
+      } else { "" },
+      if (!isTRUE(void)) { paste0(">") } else { "" },
+      if (!isTRUE(void)) { paste0(children, collapse = "") } else { " \\>" },
+      if (!isTRUE(void)) { paste0("</", tag, ">") } else { "" }
+    ))
   }
 
   formals(fn) <- eval(parse(
-    text = paste0("alist(..., ", paste(attrs, "= NULL", collapse = ", "), ")")
+    text = paste0("alist(... =, ", paste(attrs, "= NULL", collapse = ", "), ")")
   ))
   fn
 }
@@ -71,33 +79,63 @@ tag <- function(tag, attrs = NULL, escape = TRUE, void = FALSE) {
 register_html <- function(...) {
   tags <- list(...)
   for (i in seq_along(tags)) {
-    if (is.null(names(tags[[i]]))) {
+    if (length(named(tags[i])) == 0) {
       tag_name <- tags[[i]]
       tag_value <- tag(tag_name)
     } else {
-      tag_name <- names(tags[[i]])
+      tag_name <- names(tags[i])
       tag_value <- tag(tag_name,
-        attrs = unnamed(tags[[i]]),
-        void = isTRUE(tags[[i]]$void),
-        escape = isTRUE(tags[[i]]$escape)
+        attrs = tags[[i]][[1]],
+        void = is.list(tags[i][[tag_name]]) && isTRUE(tags[i][[tag_name]]$void),
+        escape = is.list(tags[i][[tag_name]]) && isTRUE(tags[i][[tag_name]]$escape)
       )
     }
     assign(tag_name, tag_value, .GlobalEnv)
   }
 }
 
-register_html("p")
+register_html(
+  "p",
+  "b",
+  a = "href",
+  img = list(c("src", "width", "height"), void = TRUE),
+  script = list(c("tag"), escape = FALSE)
+)
 
-# register_html(
-#   "p",
-#   "b",
-#   a = c("href"),
-#   img = list(c("src", "width", "height"), void = TRUE),
-#   script = list(c("tag"), escape = FALSE)
-# )
+p("Test")
+# <HTML> <p>Test</p>
+p("Test with id", id = 2)
+# <HTML> <p id = "2">Test with id</p>
+p("test with class", class = "t")
+# <HTML> <p class = "t">test with class</p>
+p("test with both", id = 2, class = "t")
+# <HTML> <p id = "2" class = "t">test with both</p>
+p
+# function (..., class = NULL, id = NULL)
+#...
+# Note that it has the correct tags.
+
+p("calling with incorrect tag", href = "bad")
+# Error in p("calling with incorrect tag", href = "bad") :
+#   p only takes can implement the following: class, id
+#   You tried to implement href
+
+a("The Googs", href = "http://www.google.com")
+# <HTML> <a href = "http://www.google.com">The Googs</a>
+
+img(src = "test.gif", width = 10, height = 10)
+# <HTML> <img src = "test.gif" width = "10" height = "10"></img>
+
+img
+# function (..., src = NULL, width = NULL, height = NULL, class = NULL,
+#    id = NULL)
 
 p("Text ", "with &escaping!", b("BOLD &escape!"))
 # <HTML> <p>Text with &amp;escaping!<b>BOLD &amp;escape!</b></p>
 
 script("Script has no escape &&&!")
 # <HTML> <script>Script has no escape &&&!</script>
+
+p("This paragraph tag contains ", b("bold!"), " and a ", a("link", href = "www.example.com"))
+# <HTML> <p>This paragraph tag contains <b>bold!</b> and a <a href = "www.examp
+# le.com">link</a></p>
