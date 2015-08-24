@@ -25,3 +25,10 @@ pos
 # -2
 # Evaluates "cyl" to its index (2) and the "-" in front of cyl to -2.
 # this -2 is then used to subset df, which throws out cyl.
+
+## It transford the names of the dataframe into a numbered list and
+## evaluates within the context of this list
+## subset(mtcars, , disp:drat)
+## ranges are a subtle trick where each name is evaluated first and
+## then the `:` operator will expand into a range
+## I.E.  x = 4; y = 7; x:y
