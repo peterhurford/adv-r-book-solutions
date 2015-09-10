@@ -10,6 +10,8 @@ chi_stat <- function(observed, expected) {
   ((observed - expected) ^ 2) / expected
 }
 
+# Implements https://en.wikipedia.org/wiki/Chi-squared_test
+# which is apparently different from chisq.test
 chisq_test2 <- function(x, y) {
   total <- sum(x) + sum(y)
   rowsum_x <- sum(x)
