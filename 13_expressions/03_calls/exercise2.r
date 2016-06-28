@@ -2,8 +2,7 @@
 
 library(magrittr)
 do.call2 <- function(what, args) {
-  if (!is.list(args)) { args <- list(args) }
-  substitute(what) %>% append(args, ., 0) %>%
+  as.name(what) %>% append(args, ., 0) %>%
     as.call(.) %>% eval(.)
 }
 
@@ -15,5 +14,5 @@ do.call2(paste, list("hi", "hello"))
 
 ## alternative
 do2.call <- function(fun, args) {
-  eval(call(as.character(substitute(fun)), unlist(args)))
+  eval(as.call(c(as.name(fun), args)))
 }
