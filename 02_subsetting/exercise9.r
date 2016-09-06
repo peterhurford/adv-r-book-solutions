@@ -29,8 +29,8 @@
 # 5  5 15 25 35 45
 
 # Contiguous sample
-  first <- sample(nrow(df)-m+1,1)
-  last <- first+m-1
+  first <- sample(nrow(df)-m,1)
+  last <- first+m
   select <- first:last
   df[select,]
 #   X1 X2 X3 X4 X5
