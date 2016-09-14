@@ -13,9 +13,9 @@ base.generics <- Filter(is.generic, base.funs)
 
 # Which one has the most defined methods?
 num.methods <- sapply(names(base.generics),function(x) length(methods(x)))
-which.max(num.methods)
+num.methods[which.max(num.methods)]
 # | 
-# 19 
+# 2593
 
 # The prize goes to the vectorized OR ('|'), with 19 defined methods.  Note, however, that this code produces warnings, since the methods() function takes issue with some of the generics.  For example,
   is.generic(log10)
