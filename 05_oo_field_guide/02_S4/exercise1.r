@@ -16,10 +16,6 @@ get_num_methods <- function(fname, mode) {
 
 number_methods <- sapply(all_generics, get_num_methods, 'generic')
 number_methods[which.max(number_methods)]
-# initialize 
-#  47 
 
 number_class_methods <- sapply(all_classes, get_num_methods, 'class')
 number_class_methods[which.max(number_class_methods)]
-# ANY 
-# 160 
