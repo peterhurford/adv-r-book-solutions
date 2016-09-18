@@ -5,7 +5,7 @@
 
 ### How do you save and restore the values of options() and par()?
 
-# Save options with `options(thing = val)`.  Get values of options with `getOption(thing)`.
+# Save options with `options(thing = val)`.  Get values of options with `getOption(thing)` or with options()$thing.
 
 # Save par with `par(thing = val)`.
 

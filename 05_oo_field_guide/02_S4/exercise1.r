@@ -4,26 +4,18 @@ all_generics <- as.character(getGenerics())
 all_classes <- as.character(getClasses())
 
 get_num_methods <- function(fname, mode) {
-  if (identical(mode, 'generic')) f <- getGeneric(fname)
-  else if (identical(mode, 'class')) f <- fname
-  else return(0)
-
-  if (is.null(f)) return(0)
-  n <- if (identical(mode, 'generic') capture.output(showMethods(f))
-  else capture.output(showMethods(class = f))
-
+  if (identical(mode, 'generic')) {
+    n <- capture.output(showMethods(fname))
+  } else if (identical(mode, 'class')) {
+    n <- capture.output(showMethods(class = fname))
+  } else {
+    return(0)
+  }
   length(n) - 2
 }
 
-get_num_methods.generic <- function(fname) { get_num_methods(fname, 'generic') }
-get_num_methods.class <- function(fname) { get_num_methods(fname, 'class') }
+number_methods <- sapply(all_generics, get_num_methods, 'generic')
+number_methods[which.max(number_methods)]
 
-number_methods <- sapply(all_generics, get_num_methods.generic)
-which.max(number_methods)
-# coerce 
-#     66
-
-number_class_methods <- sapply(all_classes, get_num_methods.class)
-which.max(number_class_methods)
-# ANY
-#  13
+number_class_methods <- sapply(all_classes, get_num_methods, 'class')
+number_class_methods[which.max(number_class_methods)]
