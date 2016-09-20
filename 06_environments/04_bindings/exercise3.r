@@ -8,7 +8,7 @@
 #' @param locked logical. If TRUE, the assignment can only be made once and no assignment can take place on that variable in that environment again (for the duration of the R session).
 assign_ <- function(name, value, env = parent.frame(), active = TRUE, locked = FALSE) {
   if (isTRUE(active)) assign(name, value, env)
-  else pryr::`%<d-%`(name, value)
+  else delayedAssign(name, value, assign.env = env)
   if (isTRUE(locked)) lockBinding(name, env)
 }
 assign_('b', 2, locked = TRUE)
@@ -20,7 +20,7 @@ system.time(assign_('c', {Sys.sleep(1); 1}, active = FALSE))
 # user  system elapsed
 #    0       0       0
 system.time(c)
-#TODO: Delayed binding doesn't seem to work.
+
 #TODO: Implement %<d-% myself.
 
 # TODO: I feel like there's some nuance in this question I'm not getting.
