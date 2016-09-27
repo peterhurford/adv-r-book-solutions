@@ -3,7 +3,7 @@
 
 make_summary <- function(summary_funs) {
   function(x) {
-    lapply(summary_funs, function(sf) sf(x, na.rm = T))
+    lapply(summary_funs, function(sf) sf(x, na.rm = TRUE))
   }
 }
 summary2 <- make_summary(list('min' = min, 'median' = median, 'mean' = mean, 'max' = max))
