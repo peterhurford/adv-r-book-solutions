@@ -6,9 +6,12 @@
 ### f(z).
 ### It depends.
 
-# x$f(x$z).  with(a, b) attaches all objects in b onto a.  So f gets attached (x$f) and z gets attached (x$z).
+# It depends.
 
-# For example:
+# If function f and vector z are both inside list x, then x$f(x$z) is the correct answer. If only z is inside list x, then f
+# is simply a function operating on z. The correct answer would be f(x$z)
+
+# First example:
 x <- list()
 x$f <- identity
 x$z <- 2
@@ -18,3 +21,9 @@ x$f(x$z)       # 2
 f(x$z)         # x$z
 x$f(z)         # Error in x$f(z) : object 'z' not found
 f(z)           # Error: could not find function "f"
+
+# Second example
+x <- list()
+x$z <- mtcars$mpg
+with(x, identity(z))
+identity(x$z)
