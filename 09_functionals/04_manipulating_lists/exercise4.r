@@ -27,7 +27,7 @@ All(function(x) x > 1, iris$Petal.Length)    # Note that this is equivalent to `
 Any2 <- function(f, x) {
   Reduce(`||`, vapply(x, f, logical(1)))
 }
-testthat::test_that("Any() works", {
+testthat::test_that("Any2() works", {
     testthat::expect_true(Any2(is.numeric, list(1, "a")))
     testthat::expect_false(Any2(is.numeric, list("a", "b")))
 })
