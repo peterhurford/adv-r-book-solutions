@@ -27,7 +27,7 @@ signif(x, y)   # Rounds x to y digits.
 exp(x)    # Computes the exponential function of x
 sum(x)    # ADds up all the values of x.
 prod(x)   # Multiplies all the values of x.
-pmax(x)   # `max(c(1, 2, 3), c(4, 5, 2))` is 5, the largest number of all the elements in both args.  But `pmax(c(1, 2, 3), c(4, 5, 2)) is c(4, 5, 2)` -- it goes by vector.
+pmax(x)   # `max(c(1, 2, 3), c(4, 5, 2))` is 5, the largest number of all the elements in both args.  But `pmax(c(1, 2, 3), c(4, 5, 2)) is c(4, 5, 3)` -- it compares vectors element-wise.
 cummax(x) # The cumulative maximum as a vector, i.e., cummax(c(x, y, z)) is c(max(x), max(c(x, y)), max(c(x, y, z)))
 diff(x)   # The difference between each point in the vector, i.e. diff(c(x, y)) is y - x.  Gets more complex with `lag`, which extends the comparison.
           # diff(c(w, x, y, z), lag = 2) is c(y - w, z - x).  `differences` applies the diff function recursively.  diff(c(1, 2, 3), differences = 2) = diff(diff(c(1, 2, 3)).
