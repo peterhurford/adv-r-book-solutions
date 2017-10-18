@@ -94,7 +94,7 @@ quarters(System.Date())   # Outputs the quarter (Q1, Q2, Q3, Q4) of the date.
 weekdays(System.Date())   # Outputs the day of the week (e.g., Monday).
 library(lubridate)        # Load's Hadley's lubridate package <https://github.com/hadley/lubridate> which adds functions making it easier to work with times in R.
 grep(needle, haystack)    # Searches object haystack for object needle and returns the position in haystack that needle is in.
-                          # Example: `grep(1, c(3, 2, 1))` outputs 1.  Note that needle can only be length one, so `grep(c(2, 1), c(3, 2, 1))` won't work.
+                          # Example: `grep(1, c(3, 2, 1))` outputs 3.  Note that needle can only be length one, so `grep(c(2, 1), c(3, 2, 1))` won't work.
                           # Also note that grep (and agrep, grepl, and gsub) all take regex patterns as the search string (needle).
 agrep(needle, haystack)   # Like grep, except strings can be off by a little bit.
                           # Compare `agrep('hip', 'happy')` (outputs 1) to `grep('hip', 'happy')`, which outputs `integer(0)`, or no matches.
